@@ -1,0 +1,12 @@
+
+platformName: Android
+platformVersion: 5.1.1
+deviceName: 127.0.0.1:21503
+appPackage: com.hs.mywork.activity
+appActivity: com.hs.mywork.activity.WelcomeActivity
+noReset: True
+unicodeKeyboard: unicodeKeyboard
+resetKeyboard: resetKeyboard
+ip: 127.0.0.1
+port: 4723
+
