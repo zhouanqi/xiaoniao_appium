@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 import yaml
-import logging.config
 from appium import webdriver
+
+
 #配置文件
 class Appium_sedired:
     """
@@ -11,9 +12,14 @@ class Appium_sedired:
     def appium_desired(self):
         """
         appium启动设置
-        :return:
+
+        :return:driver
         """
-        with open('../desired_caps.yaml','r') as f:
+        # driver=webdriver.WebElement
+        # try:
+        #     driver.isAppInstalled('com.hs.mywork.activity')
+        # expect
+        with open('./desired_caps.yaml','r') as f:
             data=yaml.load(f)
         desired_caps={}
         desired_caps['platformName'] = data['platformName']
@@ -22,10 +28,10 @@ class Appium_sedired:
         desired_caps['appPackage'] = data['appPackage']
         desired_caps['appActivity'] = data['appActivity']
         desired_caps['noReset']=data['noReset']
-        desired_caps['noReset']=data['noReset']
+        desired_caps['unicodeKeyboard']=data['unicodeKeyboard']
+        desired_caps['resetKeyboard']=data['resetKeyboard']
         driver = webdriver.Remote('http://'+str(data['ip'])+':'+str(data['port'])+'/wd/hub', desired_caps)
         driver.implicitly_wait(2)
 
-if __name__=='__main__':
-    appium=Appium_sedired()
-    appium.appium_desired()
+        return driver
+
