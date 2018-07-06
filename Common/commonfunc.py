@@ -1,22 +1,67 @@
 # -*- coding: utf-8 -*-
 import logging
+import time
 from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from appium.webdriver.webdriver import WebDriver
 from common.baseView import BaseView
 
-class Login_func(BaseView):
+# BaseView.save_screenshotimg()
+class Check_func(BaseView):
 
-    element=''
-
-    def check_element(self,element):
+    def check_element(self,element,name):
 
         try:
             element_s=self.find_element(element)
-        except NoSuchElementException:
-            logging.info('no element:loginname,password,loginin')
+        except NoSuchElementException as e:
+            time.sleep(2)
+            logging.warning('no element:%s'%name)
+            return False
         else:
+            time.sleep(0.5)
             return element_s
+
+
+class Save_screenshot(BaseView):
+
+        def save_screenshot(self,imgname):
+            try:
+                self.save_screenshotimg(imgname)
+            except Exception as e:
+                logging.error('Savescreenshot error:\t', repr(e))
+            else:
+                logging.info('screenshot %s saved successfully' )
+
+
+class Check_toast(BaseView):
+
+    def check_toast(self,toast,name):
+
+        toast='//*[@text=\'{}\']'.format(toast)
+        try:
+            element_s=self.find_element(toast,name)
+        except NoSuchElementException as e:
+            return
+        else:
+            time.sleep(0.5)
+            return element_s
+
+class Swipe_screen(BaseView):
+
+    def Swipe_screen(self,start_x,start_y,end_x,end_y):
+        try:
+            self.swipe_screenxy(start_x,start_y,end_x,end_y)
+        except Exception:
+            logging.warning('滑动失败，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
+        else:
+            logging.info('滑动屏幕，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
+
+
+
+
+
+
+
 
 
