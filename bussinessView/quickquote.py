@@ -9,13 +9,13 @@ class Quickquote(Check_func,Swipe_screen):
         self.swipe_screenxy(start_x,start_y,end_x,end_y)
         time.sleep(0.5)
         #点击快速报价
-        quote='new UiSelector().resourceId("com.hs.mywork.activity:id/tv_quote")'
+        quote='new UiSelector().resourceId("com.hs.mywork.activity:id/tv_quote").text("快速报价")'
         quote=self.check_element(quote,'快速报价')
         time.sleep(0.5)
         quote.click()
         #选择维修类型-普通
-        normal='new UiSelector().resourceId("com.hs.mywork.activity:id/putong")'
-        normal.self.check_element(normal,'选择维修')
+        normal='new UiSelector().resourceId("com.hs.mywork.activity:id/putong").text("普通")'
+        normal.self.check_element(normal,'普通维修')
         normal.click()
 
     def add_item(self):

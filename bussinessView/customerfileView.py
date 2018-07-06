@@ -34,8 +34,7 @@ class CustomerfileView(Check_func):
         oilFtye.click()
         time.sleep(0.5)
 
-    def quickquote(self):
-        pass
+
 
 
 #
