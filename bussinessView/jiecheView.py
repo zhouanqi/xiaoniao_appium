@@ -14,7 +14,7 @@ class JiecheView(Check_func):
 
     def jieche_action(self, carno):
 
-        time.sleep(2)
+        time.sleep(10)
         logging.info('接车carno:%s  '%carno)
         carno_weizhi='new UiSelector().className("android.widget.TextView").instance(11)'
         carno_weizhitye=self.check_element(carno_weizhi,'首页输入车牌框')

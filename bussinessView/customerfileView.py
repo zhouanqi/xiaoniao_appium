@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
-from common.commonfunc import Check_func
+from common.commonfunc import *
 
-class CustomerfileView(Check_func):
+class CustomerfileView(Check_func,Swipe_screen):
 
     def continueorder(self):
 
@@ -23,10 +23,12 @@ class CustomerfileView(Check_func):
         oilF='new UiSelector().resourceId("com.hs.mywork.activity:id/tv_item")'
 
         mileagetye=self.check_element(milleage,'本次来场里程')
-        oiltye=self.check_element(oil,'油量')
-
         mileagetye.send_keys(milleagenum)
         time.sleep(0.5)
+
+        self.swipe_screen(0.3, 0.7, 0.3, 0.1)
+
+        oiltye=self.check_element(oil,'油量')
         oiltye.click()
         time.sleep(0.5)
 

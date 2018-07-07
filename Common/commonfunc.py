@@ -22,6 +22,18 @@ class Check_func(BaseView):
             time.sleep(0.5)
             return element_s
 
+    def check_element_xpath(self, element ,name):
+
+        try:
+            element_s = self.find_element_xpath(element)
+        except NoSuchElementException as e:
+            time.sleep(2)
+            logging.warning('no element:%s' % name)
+            return False
+        else:
+            time.sleep(0.5)
+        return element_s
+
 
 class Save_screenshot(BaseView):
 
@@ -31,25 +43,26 @@ class Save_screenshot(BaseView):
             except Exception as e:
                 logging.error('Savescreenshot error:\t', repr(e))
             else:
-                logging.info('screenshot %s saved successfully' )
+                logging.info('screenshot %s saved successfully'%imgname )
 
 
 class Check_toast(BaseView):
 
-    def check_toast(self,toast,name):
+    def check_toast(self,toast):
 
         toast='//*[@text=\'{}\']'.format(toast)
         try:
-            element_s=self.find_element(toast,name)
-        except NoSuchElementException as e:
-            return
+            element_s=self.find_element_xpath(toast)
+        except NoSuchElementException :
+            logging.warring(" NoSuchElementException:%s"%toast)
+            return False
         else:
             time.sleep(0.5)
             return element_s
 
 class Swipe_screen(BaseView):
 
-    def Swipe_screen(self,start_x,start_y,end_x,end_y):
+    def swipe_screen(self,start_x,start_y,end_x,end_y):
         try:
             self.swipe_screenxy(start_x,start_y,end_x,end_y)
         except Exception:

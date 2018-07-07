@@ -1,8 +1,8 @@
 
 platformName: Android
-platformVersion: 7.1.1
-udid: 293bdc72
-deviceName: XIAOMI_Note3
+platformVersion: 5.1
+udid: Y15QKBP6234TM
+deviceName: MEIZU
 appPackage: com.hs.mywork.activity
 appActivity: com.hs.mywork.activity.WelcomeActivity
 noReset: True

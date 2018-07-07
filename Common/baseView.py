@@ -10,6 +10,9 @@ class BaseView(object):
     def find_element(self,loc):
         return self.driver.find_element_by_android_uiautomator(loc)
 
+    def find_element_xpath(self,loc):
+        return self.driver.find_element_by_xpath(loc)
+
     def save_screenshotimg(self,imgname):
     	self.driver.get_screenshot_as_file('./imgname/'+imgname)
 
@@ -23,6 +26,5 @@ class BaseView(object):
         self.driver.swipe(mobile_x *start_x, mobile_y * start_y, mobile_x * end_x,mobile_y * end_y,
                      duration=2000)
 
-# actions = TouchAction(driver)
-# driver.swipe(start_x=mobile_x*0.3, start_y=mobile_y*0.99, end_x=mobile_x*0.3, end_y=mobile_y*0.1, duration=2000)
+
 #

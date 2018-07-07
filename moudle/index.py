@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os
-from os import path
 import logging.config
-from config.appium_config import *
+from common.appium_config import *
 
 from bussinessView.loginView import LoginView
 from bussinessView.jiecheView import JiecheView
@@ -21,9 +19,12 @@ if __name__=='__main__':
 
     #登录
     l=LoginView(driver)
-    if l.loginin_not is False:
+    longnot=l.loginin_not()
+    if longnot ==False:
+
         #如果有登录页面（无进入首页）,登录
-        l.login_action('027310','81')
+        logging.info("logging start")
+        l.login_action('027310','1')
 
     #首页-接车
     j=JiecheView(driver)
@@ -38,6 +39,10 @@ if __name__=='__main__':
 
     Q=Quickquote(driver)
     Q.quick_quote(0.3, 0.99, 0.3, 0.1)
+    Q.add_pack_item()
+    Q.backhome()
+    Q.add_workh_item()
+    Q.backhome()
 
 
 
