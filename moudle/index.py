@@ -7,6 +7,8 @@ from bussinessView.loginView import LoginView
 from bussinessView.jiecheView import JiecheView
 from bussinessView.customerfileView import CustomerfileView
 from bussinessView.quickquote import Quickquote
+from bussinessView.jiechedanView import Jiechedan
+from bussinessView.yixvanitemView import Yixvanitem
 
 log_file_path = os.path.join('..\config', 'log.config')
 # print(log_file_path)
@@ -38,12 +40,22 @@ if __name__=='__main__':
     C.modifyinfor('87654')
 
     Q=Quickquote(driver)
-    Q.quick_quote(0.3, 0.99, 0.3, 0.1)
+    Q.quick_quote()
     Q.add_pack_item()
     Q.backhome()
     Q.add_workh_item()
     Q.backhome()
+    Q.add_parts_item()
+    Q.backhome()
+    Q.add_spraypaint_item()
+    Q.backhome()
 
+    jiecehdan=Jiechedan(driver)
+    jiecehdan.quickquote_jiechedan()
+    jiecehdan.carinternal_seleteall()
+    jiecehdan.suichezhaungbei_seleteall()
+    jiecehdan.dianzidangtuisong()
 
+    jdcyixvanitem=Yixvanitem(driver)
 
 

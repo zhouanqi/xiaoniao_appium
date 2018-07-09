@@ -34,18 +34,6 @@ class Check_func(BaseView):
             time.sleep(0.5)
         return element_s
 
-
-class Save_screenshot(BaseView):
-
-        def save_screenshot(self,imgname):
-            try:
-                self.save_screenshotimg(imgname)
-            except Exception as e:
-                logging.error('Savescreenshot error:\t', repr(e))
-            else:
-                logging.info('screenshot %s saved successfully'%imgname )
-
-
 class Check_toast(BaseView):
 
     def check_toast(self,toast):
@@ -60,6 +48,17 @@ class Check_toast(BaseView):
             time.sleep(0.5)
             return element_s
 
+
+class Save_screenshot(BaseView):
+
+        def save_screenshot(self,imgname):
+            try:
+                self.save_screenshotimg(imgname)
+            except Exception as e:
+                logging.error('Savescreenshot error:\t', repr(e))
+            else:
+                logging.info('screenshot %s saved successfully'%imgname )
+
 class Swipe_screen(BaseView):
 
     def swipe_screen(self,start_x,start_y,end_x,end_y):
@@ -69,6 +68,8 @@ class Swipe_screen(BaseView):
             logging.warning('滑动失败，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
         else:
             logging.info('滑动屏幕，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
+
+
 
 
 
