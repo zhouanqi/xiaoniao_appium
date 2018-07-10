@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
 import logging
-from common.commonfunc import Check_func
-class Jiechedan_page(Check_func):
+from common.commonfunc import Common_func
+class Jiechedan_page(Common_func):
     def jiecehdanpage(self):
         #判断扫描接车图片确定首页
         jiechedan='new UiSelector().resourceId("com.hs.mywork.activity:id/tv_toolbar").text("接车单")'

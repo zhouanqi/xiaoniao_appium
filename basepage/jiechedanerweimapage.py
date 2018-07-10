@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
 import logging
-from common.commonfunc import Check_func
-class Jiechedanerweima_page(Check_func):
+from common.commonfunc import Common_func
+class Jiechedanerweima_page(Common_func):
     erweimapage = 'new UiSelector().resourceId("com.hs.mywork.activity:id/tv_title").text("接车单")'
     def jiechedanerweimapage(self):
         #判断扫描接车图片确定首页

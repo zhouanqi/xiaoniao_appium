@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import yaml
+import logging
 from appium import webdriver
 
 
@@ -16,12 +17,14 @@ def appium_desired():
     desired_caps['deviceName'] = data['deviceName']
     desired_caps['appPackage'] = data['appPackage']
     desired_caps['appActivity'] = data['appActivity']
-    desired_caps['noReset']=data['noReset']
+    # desired_caps['noReset']=data['noReset']
     desired_caps['unicodeKeyboard']=data['unicodeKeyboard']
     desired_caps['resetKeyboard']=data['resetKeyboard']
     desired_caps['automationName']=data['automationName']
     #真机
     desired_caps['udid'] = data['udid']
+
+    logging.info('start APP')
     driver = webdriver.Remote('http://'+str(data['ip'])+':'+str(data['port'])+'/wd/hub', desired_caps)
     driver.implicitly_wait(2)
 

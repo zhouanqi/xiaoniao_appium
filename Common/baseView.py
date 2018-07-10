@@ -3,6 +3,7 @@ from appium.webdriver.webdriver import WebDriver
 from appium.webdriver.common.touch_action import TouchAction
 
 
+
 class BaseView(object):
     def __init__(self,driver):
         self.driver=driver
@@ -27,4 +28,4 @@ class BaseView(object):
                      duration=2000)
 
 
-#
+
