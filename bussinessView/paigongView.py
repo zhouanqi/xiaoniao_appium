@@ -8,7 +8,7 @@ from basepage.fenpeijishipage import Fenpeijishi_page
 from bussinessView.fenpaijishiView import FenpeijishiView
 
 
-class PaigongView(FenpeijishiView,Fenpeijishi_page,Check_toast):
+class PaigongView(FenpeijishiView,Fenpeijishi_page):
 
     fengpeijishi='new UiSelector().resourceId("com.hs.mywork.activity:id/tv_sa").text("分配技师")'
     selete_all='new UiSelector().resourceId("com.hs.mywork.activity:id/check_box").text("全选")'
@@ -31,7 +31,7 @@ class PaigongView(FenpeijishiView,Fenpeijishi_page,Check_toast):
 
             surepaigongtye=self.check_element(self.surejishi,"确认施工")
 
-            self.wait(5).until(Check_toast.check_toast('亲，派工已完成'))
+            self.wait(5).until(self.check_toast('亲，派工已完成'))
 
 
 

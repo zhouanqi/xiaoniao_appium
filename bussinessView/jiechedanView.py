@@ -6,7 +6,7 @@ from common.commonfunc import *
 from basepage.jiechedanpage import Jiechedan_page
 from basepage.jiechedanerweimapage import Jiechedanerweima_page
 
-class JiechedanView(Swipe_screen, Jiechedan_page, Check_toast, Jiechedanerweima_page):
+class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
     jiechedan_text='new UiSelector().resourceId("")'
     #快速报价-创建接车单
     ququpage_jiechedan='new UiSelector().resourceId("com.hs.mywork.activity:id/btn_create").text("创建接车单")'
@@ -28,8 +28,7 @@ class JiechedanView(Swipe_screen, Jiechedan_page, Check_toast, Jiechedanerweima_
     addquete = 'new UiSelector().className("android.widget.TextView").text("添加报价项")'
 
 
-    def Isjiecehdanpage(self):
-        return self.jiecehdanpage()
+
 
     def quickquote_jiechedan(self):
         #快速报价-创建接车单
@@ -37,7 +36,7 @@ class JiechedanView(Swipe_screen, Jiechedan_page, Check_toast, Jiechedanerweima_
         ququpage_jiechedantye.click()
         self.wait(3)
 
-        if self.Isjiecehdanpage():
+        if self.jiecehdanpage():
             logging.info('创建接车单')
         else:
             logging.error('创建接车单失败')
@@ -80,7 +79,7 @@ class JiechedanView(Swipe_screen, Jiechedan_page, Check_toast, Jiechedanerweima_
         dianzidangtye.click()
         self.wait(2)
         #value = method(self._driver)
-        self.wait(5).until(lambda  :self.check_toast('亲，保存成功'))
+        self.check_toast('亲，保存成功')
 
         logging.info("接车单电子档推送")
 

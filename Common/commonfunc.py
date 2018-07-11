@@ -3,12 +3,12 @@ import os
 import logging
 import csv
 from time import sleep,strftime
-from appium import webdriver
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
 from appium.webdriver.webdriver import WebDriver
 from common.baseView import BaseView
+from selenium.webdriver.support.expected_conditions import *
 
 # BaseView.save_screenshotimg()
 class Common_func(BaseView):
@@ -85,8 +85,8 @@ class Common_func(BaseView):
         else:
             logging.info('滑动屏幕，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
 
-    def wait(self,time,interval=0.5):
-        return WebDriverWait(self.driver, time, interval)
+    def wait(self,time,method,message=''):
+        return WebDriverWait(self.driver, time).until(method,message)
 
 
     def get_csv_data(self, csv_file, line):
