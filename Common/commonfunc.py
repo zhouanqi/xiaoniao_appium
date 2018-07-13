@@ -85,8 +85,8 @@ class Common_func(BaseView):
         else:
             logging.info('滑动屏幕，start_x:%s,start_y:%s,end_x:%s,end_y:%s'%(start_x,start_y,end_x,end_y))
 
-    def wait(self,time,method,message=''):
-        return WebDriverWait(self.driver, time).until(method,message)
+    def wait(self,method,time=20,message=''):
+        return WebDriverWait(self.driver, time,0.5).until(lambda x:method,message)
 
 
     def get_csv_data(self, csv_file, line):

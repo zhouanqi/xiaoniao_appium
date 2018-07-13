@@ -34,9 +34,9 @@ class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
         #快速报价-创建接车单
         ququpage_jiechedantye=self.check_element(self.ququpage_jiechedan,'创建接车单')
         ququpage_jiechedantye.click()
-        self.wait(3)
 
-        if self.jiecehdanpage():
+
+        if self.wait(self.jiecehdanpage(),message="创建接车单失败"):
             logging.info('创建接车单')
         else:
             logging.error('创建接车单失败')
@@ -45,14 +45,14 @@ class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
         seletealltye=self.check_element(self.car_seleteall,'接车单-车辆内部-项目全选')
         seletealltye.click()
         logging.info("接车单-车辆内部-项目全选")
-        self.wait(2)
+
 
     def suichezhaungbei_seleteall(self):
         self.swipesuichebottom_page()
         equ_seletealltye=self.check_element(self.equ_seleteall,"随车装备-项目全选")
         equ_seletealltye.click()
         logging.info("接车单-随车装备-项目全选")
-        self.wait(2)
+
 
     def otheritem(self):
         #安卓默认已选无，暂不做
@@ -77,10 +77,8 @@ class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
         self.swipebottom_page()
         dianzidangtye=self.check_element(self.dianzidang,"电子档推送")
         dianzidangtye.click()
-        self.wait(2)
-        #value = method(self._driver)
-        self.check_toast('亲，保存成功')
 
+        self.check_toast('亲，保存成功')
         logging.info("接车单电子档推送")
 
 

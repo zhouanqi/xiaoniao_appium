@@ -44,7 +44,7 @@ class LoginView(Home_page):
         logging.info('====check_loginStatus======')
         try:
             #return WebDriverWait(self.driver, time).until(method,message)
-            self.wait(5,lambda x:self.homepage())
+            self.wait(self.homepage())
         except (NoSuchElementException ,TimeoutException):
             logging.error('login Fail!')
             self.save_screenshot('login fail')

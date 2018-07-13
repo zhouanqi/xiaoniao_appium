@@ -19,19 +19,18 @@ class PaigongView(FenpeijishiView,Fenpeijishi_page):
         if self.paigongpage():
             # selete_alltye=self.check_element(self.selete_all,'项目全选')
             # selete_alltye.click()
-            # self.wait(2)
+
 
             fengpeijishitye=self.check_element(self.fengpeijishi,'分配技师按钮')
             fengpeijishitye.click()
-            self.wait(5).until(self.check_element(self.fengpeijishi,'分配技师页面'))
+            self.wait(self.check_element(self.fengpeijishi,'分配技师页面'),message="分配技师失败")
 
             self.chosejishi()
-
             logging.info("派工")
 
             surepaigongtye=self.check_element(self.surejishi,"确认施工")
 
-            self.wait(5).until(self.check_toast('亲，派工已完成'))
+            self.wait(self.check_toast('亲，派工已完成'),message="派工失败")
 
 
 
