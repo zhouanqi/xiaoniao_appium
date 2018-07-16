@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import logging
-import time
 from selenium.common.exceptions import NoSuchElementException,TimeoutException
 from basepage.homepage import Home_page
 
@@ -35,23 +34,28 @@ class LoginView(Home_page):
         logging.info('loginname:%s,password:%s' %(loginname,password))
 
         tyename.send_keys(loginname)
-
         tyepas.send_keys(password)
-
         tyein.click()
 
-    def check_loginStatus(self):
-        logging.info('====check_loginStatus======')
-        try:
-            #return WebDriverWait(self.driver, time).until(method,message)
-            self.wait(self.homepage())
-        except (NoSuchElementException ,TimeoutException):
-            logging.error('login Fail!')
-            self.save_screenshot('login fail')
+        if self.check_toast('登录成功')==False:
+            logging.error("登陆失败")
             return False
         else:
-            logging.info('login success!')
             return True
+
+    def check_loginStatus(self,loginname,password,message=''):
+
+        logging.info('====check_loginStatus======' )
+        try:
+            self.login_action(loginname,password)
+        except (NoSuchElementException, TimeoutException):
+            logging.error('%s Fail!' % message)
+            self.save_screenshot('%s fail' % message)
+            return False
+        else:
+            logging.info('%s success!' % message)
+            return True
+
 
 
 

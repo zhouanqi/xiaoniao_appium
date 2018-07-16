@@ -5,6 +5,7 @@ import time
 from common.commonfunc import *
 from basepage.jiechedanpage import Jiechedan_page
 from basepage.jiechedanerweimapage import Jiechedanerweima_page
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
 
 class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
     jiechedan_text='new UiSelector().resourceId("")'
@@ -103,4 +104,16 @@ class JiechedanView(Jiechedan_page,Jiechedanerweima_page):
 
 
 
+    def check_jiechedanStatus(self):
+        logging.info('====check_loginStatus======')
+        try:
+            # return WebDriverWait(self.driver, time).until(method,message)
+            self.wait(self.jiechedanerweimapage())
+        except (NoSuchElementException, TimeoutException):
+            logging.error('创建接车单 Fail!')
+            self.save_screenshot('创建接车单 fail')
+            return False
+        else:
+            logging.info('创建接车单 success!')
+            return True
 

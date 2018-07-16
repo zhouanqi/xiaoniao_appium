@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import logging
 import time
+
 from basepage.additempage import Additem_page
 from basepage.kehudanganpage import Kehudangan_page
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
+
 
 class QuickquoteView(Additem_page, Kehudangan_page):
     """
@@ -151,7 +154,7 @@ class QuickquoteView(Additem_page, Kehudangan_page):
 
     def backhome(self):
         #返回首页,页面左上角返回键
-        backbutton=self.wait(self.check_element(self.backbutton,"返回按钮"))
+        backbutton=self.wait(self.check_element_assess_id(self.backbutton,"返回按钮"))
         backbutton.click()
         self.wait(self.kehudanganpage(),message="返回客户档案页失败")
 
@@ -163,4 +166,22 @@ class QuickquoteView(Additem_page, Kehudangan_page):
             jiechedantye=self.check_element(self.jiechedan,"创建接车单")
         return jiechedantye
 
+    def check_quickquoteStatus(self):
+
+        try:
+            self.add_pack_item()
+            self.backhome()
+            self.add_workh_item()
+            self.backhome()
+            self.add_parts_item()
+            self.backhome()
+            self.add_spraypaint_item()
+            self.backhome()
+        except (NoSuchElementException, TimeoutException):
+            logging.error('添加项目 Fail!')
+            self.save_screenshot('添加项目 fail')
+            return False
+        else:
+            logging.info('添加项目 success!')
+            return True
 

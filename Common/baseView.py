@@ -14,6 +14,9 @@ class BaseView(object):
     def find_element_xpath(self,loc):
         return self.driver.find_element_by_xpath(loc)
 
+    def find_element_access_id(self,id):
+        return self.driver.find_element_by_accessibility_id(id)
+
     def save_screenshotimg(self,imgname):
     	self.driver.get_screenshot_as_file('./imgname/'+imgname)
 

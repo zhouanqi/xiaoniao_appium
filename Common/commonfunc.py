@@ -4,9 +4,9 @@ import logging
 import csv
 from time import sleep,strftime
 
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
-from appium.webdriver.webdriver import WebDriver
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
+
 from common.baseView import BaseView
 from selenium.webdriver.support.expected_conditions import *
 
@@ -41,6 +41,16 @@ class Common_func(BaseView):
         except NoSuchElementException as e:
             sleep(2)
             logging.warning('no element:%s' % name)
+            return False
+        else:
+            return elementtye
+
+    def check_element_assess_id(self,element,name):
+        try:
+            elementtye=self.find_element_access_id(element)
+        except NoSuchElementException as e:
+            sleep(2) #为了输出log信息
+            logging.warning('no element:%s'%name)
             return False
         else:
             return elementtye
@@ -88,7 +98,6 @@ class Common_func(BaseView):
     def wait(self,method,time=20,message=''):
         return WebDriverWait(self.driver, time,0.5).until(lambda x:method,message)
 
-
     def get_csv_data(self, csv_file, line):
         logging.info('=====get_csv_data======')
         with open(csv_file, 'r', encoding='utf-8-sig') as file:
@@ -96,6 +105,20 @@ class Common_func(BaseView):
             for index, row in enumerate(reader, 1):
                 if index == line:
                     return row
+
+    def check_viewstatus(self,viewname,method,message='',*args):
+        logging.info('====check_%sStatus======'%viewname)
+        try:
+            len(args)
+            method
+        except (NoSuchElementException, TimeoutException):
+            logging.error('%s Fail!'%message)
+            self.save_screenshot('%s fail'%message)
+            return False
+        else:
+            logging.info('%s success!'%message)
+            return True
+
 
 
 

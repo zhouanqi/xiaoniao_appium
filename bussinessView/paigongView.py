@@ -6,6 +6,7 @@ from common.commonfunc import *
 
 from basepage.fenpeijishipage import Fenpeijishi_page
 from bussinessView.fenpaijishiView import FenpeijishiView
+from selenium.common.exceptions import NoSuchElementException,TimeoutException
 
 
 class PaigongView(FenpeijishiView,Fenpeijishi_page):
@@ -31,6 +32,19 @@ class PaigongView(FenpeijishiView,Fenpeijishi_page):
             surepaigongtye=self.check_element(self.surejishi,"确认施工")
 
             self.wait(self.check_toast('亲，派工已完成'),message="派工失败")
+
+    def check_paigongStatus(self):
+        logging.info('====check_paigongStatus======')
+        try:
+
+            self.paigong()
+        except (NoSuchElementException, TimeoutException):
+            logging.error('派工 Fail!')
+            self.save_screenshot('派工 fail')
+            return False
+        else:
+            logging.info('派工 success!')
+            return True
 
 
 

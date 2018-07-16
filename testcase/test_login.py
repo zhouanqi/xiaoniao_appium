@@ -8,14 +8,13 @@ class TestLogin(StartEnd):
 
    def test_login_01(self):
         logging.info('============test_login_01================')
-        l=LoginView(self.driver)
-
-        longnot = l.loginin_not()
+        L=LoginView(self.driver)
+        longnot = L.loginin_not()
         if longnot == False:
             # 如果有登录页面（无进入首页）,登录
             logging.info("logging start")
-            l.login_action('027310', '1')
-        self.assertTrue(l.check_loginStatus())
+            self.assertTrue(L.check_loginStatus('027310', '1'))
+
 
    @unittest2.skip('test_login_error')
    def test_login_error(self):

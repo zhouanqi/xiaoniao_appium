@@ -68,10 +68,9 @@ class CustomerfileView(Common_func):
         return jiechedantye
 
     #验证
-    def check_jiecheStatus(self):
+    def check_customerbaojiaStatus(self):
         #滑动，找到
         self.swipe_screen(0.08, 0.7, 0.3, 0.3)
-
         try:
             # return WebDriverWait(self.driver, time).until(method,message)
             normalitem = self.wait(self.check_element(self.normalitem), "报价-常规项目")
@@ -80,7 +79,7 @@ class CustomerfileView(Common_func):
             self.save_screenshot('客户档案报价 fail')
             return False
         else:
-            logging.info('接客户档案报价 success!')
+            logging.info('客户档案报价 success!')
             return True
 
 #
