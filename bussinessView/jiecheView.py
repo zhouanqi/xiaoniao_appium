@@ -42,7 +42,6 @@ class JiecheView(Kehudangan_page):
     def check_jiecheStatus(self):
         logging.info('====check_jiehceStatus======')
         try:
-            # return WebDriverWait(self.driver, time).until(method,message)
             self.wait(self.kehudanganpage(),message="接车没有找到客户档案页")
         except (NoSuchElementException, TimeoutException):
             logging.error('接车 Fail!')

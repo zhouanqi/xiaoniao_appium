@@ -11,7 +11,7 @@ from bussinessView.jiechedanView import JiechedanView
 from bussinessView.jcddianzidangView import JcddianzidangView
 from bussinessView.yixvanitemView import Yixvanitem
 from bussinessView.paigongView import PaigongView
-from testcase.test_login import TestLogin
+
 
 log_file_path = os.path.join('..\config', 'log.config')
 # print(log_file_path)

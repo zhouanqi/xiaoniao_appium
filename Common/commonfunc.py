@@ -79,7 +79,8 @@ class Common_func(BaseView):
 
     def save_screenshot(self,imgname):
         time = self.getTime()
-        image_file = os.path.dirname(os.path.dirname(__file__)) + '/screenshots/%s_%s.png' % (imgname, time)
+        image_file =os.path.join('..\screenshots','%s_%s.png' % (imgname, time))
+        # image_file = os.path.dirname(os.path.dirname(__file__)) + '/screenshots/%s_%s.png' % (imgname, time)
         try:
             self.save_screenshotimg(image_file)
         except Exception as e:

@@ -69,10 +69,9 @@ class CustomerfileView(Common_func):
 
     #验证
     def check_customerbaojiaStatus(self):
-        #滑动，找到
+        #滑动，找到报价项目的元素
         self.swipe_screen(0.08, 0.7, 0.3, 0.3)
         try:
-            # return WebDriverWait(self.driver, time).until(method,message)
             normalitem = self.wait(self.check_element(self.normalitem), "报价-常规项目")
         except (NoSuchElementException, TimeoutException):
             logging.error('客户档案报价 Fail!')

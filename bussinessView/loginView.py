@@ -43,17 +43,17 @@ class LoginView(Home_page):
         else:
             return True
 
-    def check_loginStatus(self,loginname,password,message=''):
+    def check_loginStatus(self,loginname,password):
 
         logging.info('====check_loginStatus======' )
         try:
             self.login_action(loginname,password)
         except (NoSuchElementException, TimeoutException):
-            logging.error('%s Fail!' % message)
-            self.save_screenshot('%s fail' % message)
+            logging.error('loginStatus Fail!' )
+            self.save_screenshot('loginStatus fail' )
             return False
         else:
-            logging.info('%s success!' % message)
+            logging.info('loginStatus success!' )
             return True
 
 

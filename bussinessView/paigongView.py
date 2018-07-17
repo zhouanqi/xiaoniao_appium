@@ -21,14 +21,15 @@ class PaigongView(FenpeijishiView,Fenpeijishi_page):
             # selete_alltye=self.check_element(self.selete_all,'项目全选')
             # selete_alltye.click()
 
-
+            #点击分配技师
             fengpeijishitye=self.check_element(self.fengpeijishi,'分配技师按钮')
             fengpeijishitye.click()
+            #查找分配技师页面
             self.wait(self.check_element(self.fengpeijishi,'分配技师页面'),message="分配技师失败")
-
+            #选择一个技师派工
             self.chosejishi()
             logging.info("派工")
-
+            #点击确认施工
             surepaigongtye=self.check_element(self.surejishi,"确认施工")
 
             self.wait(self.check_toast('亲，派工已完成'),message="派工失败")
@@ -36,7 +37,6 @@ class PaigongView(FenpeijishiView,Fenpeijishi_page):
     def check_paigongStatus(self):
         logging.info('====check_paigongStatus======')
         try:
-
             self.paigong()
         except (NoSuchElementException, TimeoutException):
             logging.error('派工 Fail!')

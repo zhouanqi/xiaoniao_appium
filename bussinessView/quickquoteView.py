@@ -43,7 +43,7 @@ class QuickquoteView(Additem_page, Kehudangan_page):
     jiechedan = 'new UiSelector().resourceId("com.hs.mywork.activity:id/btn_create").text("创建接车单")'
 
     #添加项目返回按钮
-    backbutton = 'new UiSelector().className("android.widget.ImageButton").index(0)'
+    backbutton = "转到上一层级"
 
 
 

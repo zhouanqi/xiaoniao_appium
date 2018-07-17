@@ -16,13 +16,13 @@ class JcddianzidangView(Jiechedanerweima_page,Yixvanitem_page):
         if self.jiechedanerweimapage():
             # print(type(self.yixvanitem))
             yixvanitemtye=self.check_element(self.yixvanitem,"进入已选项目")
-            # yixvanitemtye.click()
+            yixvanitemtye.click()
+            # pass
 
 
     def check_jdcdianzidangStatus(self):
         logging.info('====check_dcdianzidangStatus======')
         try:
-            # return WebDriverWait(self.driver, time).until(method,message)
             self.wait(self.yixvanitempage())
         except (NoSuchElementException, TimeoutException):
             logging.error('接车单-已选项目 Fail!')
