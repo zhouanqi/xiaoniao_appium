@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 import time
-
+from common.appium_config import *
 from basepage.additempage import Additem_page
 from basepage.kehudanganpage import Kehudangan_page
 from selenium.common.exceptions import NoSuchElementException,TimeoutException
@@ -43,9 +43,12 @@ class QuickquoteView(Additem_page, Kehudangan_page):
     jiechedan = 'new UiSelector().resourceId("com.hs.mywork.activity:id/btn_create").text("创建接车单")'
 
     #添加项目返回按钮
+    topview='new UiSelector().className("android.view.View").resourceId("com.hs.mywork.activity:id/toolbar").index(0)'
     backbutton = "转到上一层级"
 
 
+    #等待元素
+    waitimg='new UiSelector().className("android.widget.ImageView").resourceId("com.hs.mywork.activity:id/img").index(0)'
 
 
     def add_pack_item(self):
@@ -54,14 +57,20 @@ class QuickquoteView(Additem_page, Kehudangan_page):
 
         #选择套餐-保养
         baoyangpack=self.wait(self.check_element(self.baoyangpack,"套餐-保养"))
+
         baoyangpack.click()
+
 
         #进入添加项目-保养套餐页面
         if self.wait(self.additempage()):
             #第一个保养套餐
-            baoyang_package=self.check_element(self.baoyang_package,"保养套餐")
+            # 等待元素
+            self.check_waitting(self.waitimg, "晓鸟等待")
+            baoyang_package =self.check_element(self.baoyang_package,"保养套餐")
             baoyang_package.click()
             logging.info("添加保养套餐")
+            self.check_waitting(self.waitimg, "晓鸟等待")
+
         else:
             logging.info("没有快速报价，添加保养套餐元素")
 
@@ -75,6 +84,8 @@ class QuickquoteView(Additem_page, Kehudangan_page):
         workh=self.check_element(self.workh_tab,"菜单栏-工时")
         workh.click()
 
+        self.check_waitting(self.waitimg, "晓鸟等待")
+
         # 选择-工时-保养
         workh =  self.wait(self.check_element(self.workh_baoyang, "工时-保养"))
         workh.click()
@@ -86,9 +97,9 @@ class QuickquoteView(Additem_page, Kehudangan_page):
         else:
             logging.info("快速报价工时下拉没有数据")
 
-
         #工时二级页面
-        time.sleep(2)
+        self.check_waitting(self.waitimg, "晓鸟等待")
+
         if self.check_element(self.workhours_2,"第一个工时项目"):
             workhours_2tye=self.check_element(self.workhours_2,"第一个工时项目")
             workhours_2tye.click()
@@ -107,7 +118,8 @@ class QuickquoteView(Additem_page, Kehudangan_page):
 
         #添加配件项目
         #配件-是否有下拉菜单
-        time.sleep(2)
+        self.check_waitting(self.waitimg, "晓鸟等待")
+
         if self.check_element(self.parts_baoayng,"保养"):
             #点击工时项目下拉菜单
             parts_fadongji=self.wait(self.check_element(self.parts_baoayng,"配件-保养"))
@@ -116,7 +128,8 @@ class QuickquoteView(Additem_page, Kehudangan_page):
             logging.info("快速报价配件下拉没有数据")
 
         #配件二级页面
-        time.sleep(2)
+        self.check_waitting(self.waitimg, "晓鸟等待")
+
         if self.check_element(self.parts_2,"第一个配件项目"):
             parts_2tye=self.wait(self.check_element(self.parts_2, "第一个配件项目"))
             parts_2tye.click()
@@ -154,9 +167,21 @@ class QuickquoteView(Additem_page, Kehudangan_page):
 
     def backhome(self):
         #返回首页,页面左上角返回键
-        backbutton=self.wait(self.check_element_assess_id(self.backbutton,"返回按钮"))
-        backbutton.click()
-        self.wait(self.kehudanganpage(),message="返回客户档案页失败")
+        self.wait(self.check_element(self.topview,"页面顶部View"),message="没有找到页面顶部view")
+
+        backbutton = "转到上一层级"
+
+        backbutton=self.check_element_assess_id(self.backbutton,"返回按钮")
+
+        if backbutton:
+            backbutton.click()
+        time.sleep(5)
+        if self.kehudanganpage():
+            pass
+        else:
+            logging.error("返回客户档案页失败")
+        # self.wait(self.kehudanganpage(),message="返回客户档案页失败")
+
 
     def swipebottom_page(self):
         jiechedantye=False

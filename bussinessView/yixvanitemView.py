@@ -10,10 +10,11 @@ from selenium.common.exceptions import NoSuchElementException,TimeoutException
 
 class Yixvanitem(Yixvanitem_page,Paigong_page):
 
-    send='new UiSelector().resourceId("com.hs.mywork.activity:id/loading_tech").text("派工")'
+    sendview='new UiSelector().className("android.widget.TextView").text("派工")'
+
     def send(self):
         if self.yixvanitempage():
-            sendtye=self.check_element(self.send,"派工")
+            sendtye=self.check_element(self.sendview,"派工")
             sendtye.click()
 
     def check_yixvanitemStatus(self):

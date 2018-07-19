@@ -15,6 +15,6 @@ class FenpeijishiView(Fenpeijishi_page,Paigong_page):
             jishitye.click()
             logging.info("分配技师")
 
-            self.wait(5).until(self.paigongpage())
+            self.wait(self.paigongpage())
 
 

@@ -16,7 +16,7 @@ report_dir='../reports'
 log_file_path = os.path.join('..\config', 'log.config')
 logging.config.fileConfig(log_file_path, disable_existing_loggers=False)
 logging=logging.getLogger()
-discover=unittest2.defaultTestLoader.discover(test_dir,pattern='test_login.py')
+discover=unittest2.defaultTestLoader.discover(test_dir,pattern='test_*.py')
 
 now=time.strftime('%Y-%m-%d %H_%M_%S')
 report_name=report_dir+'/'+now+' test_report.html'

@@ -70,11 +70,11 @@ if __name__=='__main__':
     jcddianzidang.yixvanitem()
     #
     #已选项目-派工
-    # jdcyixvanitem=Yixvanitem(driver)
-    # jdcyixvanitem.send()
-    #
+    jdcyixvanitem=Yixvanitem(driver)
+    jdcyixvanitem.send()
+
     # # 派工
-    # paigong=PaigongView(driver)
-    # paigong.paigong()
+    paigong=PaigongView(driver)
+    paigong.paigong()
 
 
