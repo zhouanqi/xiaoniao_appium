@@ -26,7 +26,7 @@ Common_func:
 
 3) appium 启动封装，因为不同的机型和环境可能有不同的配置，每一次都要重新在写一次启动设置太麻烦了，直接封窗起来，数据放在`.yaml`文件，以后只需要修改`.yaml`文件参数即可。文件引用：`from common.appium_config import *`
 
-4) 测试用例启动`startend.py`，使用过`unittest`的都知道执行测试用例一定是会要执行两个方法：`setUp`和`tearDown`这里风咋黄了这两个方法，方便用例的执行和APP关闭。
+4) 测试用例启动`startend.py`，使用过`unittest`的都知道执行测试用例一定是会要执行两个方法：`setUp`和`tearDown`这里封装了这两个方法，方便用例的执行和APP关闭。
 
 ##### 2.  基本页面（basepage）
 
